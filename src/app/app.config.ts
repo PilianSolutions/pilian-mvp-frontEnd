@@ -1,9 +1,14 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { Injectable } from "@angular/core";
+import * as appInit from '../config/config.json';
+import { ListarAppConfig } from "./shared/model/listarAppConfig.model";
 
-import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
+@Injectable()
+export class AppConfig {
+    static settings: ListarAppConfig;
+    constructor(){}
 
-export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration()]
-};
+    listaUrlApi(){
+        AppConfig.settings = (appInit as any).default
+    }
+
+}
